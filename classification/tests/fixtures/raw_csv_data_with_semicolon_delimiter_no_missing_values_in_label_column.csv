@@ -1,0 +1,9 @@
+col_1;label;image;cell_id;col_3;col_4
+2;label_2;images/image_1.png;0;0.5;1
+1;label_2;images/image_1.png;1;1.5;2
+4;label_1;image_8.png;0;-0.25;3
+8;label_1;image_4;0;4444;4
+32;label_2;/image_32.jpg;0;32;5
+16;label_4;images/image_2;0;0.5;6
+64;label_4;images/image_2;1;-0.5;7
+16;label_1;images/image_2;2;0.75;8

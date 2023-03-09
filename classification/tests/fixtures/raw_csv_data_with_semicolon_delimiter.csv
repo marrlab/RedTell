@@ -1,0 +1,9 @@
+col_1;col_2;label;image;cell_id;col_3;col_4
+2;;label_2;images/image_1.png;0;0.5;inf
+1;nan;;images/image_1.png;1;1.5;-inf
+4;NA;label_1;image_8.png;0;-0.25;Inf
+8;NaN;label_1;image_4;0;4444;-Inf
+32;<NA>;label_2;/image_32.jpg;0;32;infinity
+16;None;label_4;images/image_2;0;0.5;-infinity
+64;null;label_4;images/image_2;1;-0.5;Infinity
+16;N/A;label_1;images/image_2;2;0.75;-Infinity

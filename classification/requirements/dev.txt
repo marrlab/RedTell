@@ -1,0 +1,6 @@
+-r base.txt
+jupyter==1.0.0
+pytest==7.1.2
+mypy==0.971
+black==22.6.0
+pylint==2.7.2

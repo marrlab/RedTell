@@ -1,0 +1,103 @@
+{
+"pyradiomics_shape": {
+"original_shape2D_Elongation": "shape_Elongation",
+"original_shape2D_MajorAxisLength": "shape_MajorAxisLength",
+"original_shape2D_MaximumDiameter": "shape_MaximumDiameter",
+"original_shape2D_MinorAxisLength": "shape_MinorAxisLength",
+"original_shape2D_Perimeter": "shape_Perimeter",
+"original_shape2D_PerimeterSurfaceRatio": "shape_PerimeterSurfaceRatio",
+"original_shape2D_PixelSurface": "shape_PixelSurface",
+"original_shape2D_Sphericity": "shape_Sphericity"
+},
+
+"regioprops_shape": {
+"bbox_area": "shape_bbox_area",
+"convex_area": "shape_convex_area",
+"extent": "shape_extent",
+"eccentricity": "shape_eccentricity",
+"equivalent_diameter": "shape_diameter",
+"solidity": "shape_solidity"
+},
+
+
+"intensity": {
+"original_firstorder_10Percentile": "intensity_10Percentile",
+"original_firstorder_90Percentile": "intensity_90Percentile",
+"original_firstorder_Energy": "intensity_Energy",
+"original_firstorder_Entropy": "intensity_Entropy",
+"original_firstorder_InterquartileRange": "intensity_InterquartileRange",
+"original_firstorder_Kurtosis": "intensity_Kurtosis",
+"original_firstorder_Maximum": "intensity_Maximum",
+"original_firstorder_MeanAbsoluteDeviation": "intensity_MeanAbsoluteDeviation",
+"original_firstorder_Mean": "intensity_Mean",
+"original_firstorder_Median": "intensity_Median",
+"original_firstorder_Minimum": "intensity_Minimum",
+"original_firstorder_Range": "intensity_Range",
+"original_firstorder_RobustMeanAbsoluteDeviation": "intensity_RobustMeanAbsoluteDeviation",
+"original_firstorder_RootMeanSquared": "intensity_RootMeanSquared",
+"original_firstorder_Skewness": "intensity_RootMeanSquared",
+"original_firstorder_TotalEnergy": "intensity_TotalEnergy",
+"original_firstorder_Uniformity": "intensity_Uniformity",
+"original_firstorder_Variance": "intensity_Variance"
+},
+
+"glcm": {
+"original_glcm_Contrast": "glcm_Contrast",
+"original_glcm_Correlation": "glcm_Correlation",
+"original_glcm_Autocorrelation": "glcm_Autocorrelation",
+"original_glcm_DifferenceAverage": "glcm_DifferenceAverage",
+"original_glcm_DifferenceEntropy": "glcm_DifferenceEntropy",
+"original_glcm_DifferenceVariance": "glcm_DifferenceVariance",
+"original_glcm_Id": "glcm_Id",
+"original_glcm_Idm": "glcm_Idm",
+"original_glcm_Imc1": "glcm_Imc1",
+"original_glcm_Imc2": "glcm_Imc12",
+"original_glcm_InverseVariance": "glcm_InverseVariance",
+"original_glcm_JointAverage": "glcm_JointAverage",
+"original_glcm_JointEnergy": "glcm_JointEnergy",
+"original_glcm_JointEntropy": "glcm_JointEntropy",
+"original_glcm_MCC": "glcm_MCC"
+},
+
+"gldm": {
+"original_gldm_DependenceEntropy": "gldm_DependenceEntropy",
+"original_gldm_DependenceNonUniformity": "gldm_DependenceNonUniformity",
+"original_gldm_DependenceVariance": "gldm_DependenceVariance",
+"original_gldm_GrayLevelNonUniformity": "gldm_GrayLevelNonUniformity",
+"original_gldm_GrayLevelVariance": "gldm_GrayLevelVariance",
+"original_gldm_LowGrayLevelEmphasis":"gldm_LowGrayLevelEmphasis",
+"original_gldm_HighGrayLevelEmphasis":"gldm_HighGrayLevelEmphasis"
+
+},
+
+"glrlm": {
+"original_glrlm_LongRunEmphasis": "glrlm_LongRunEmphasis",
+"original_glrlm_LongRunHighGrayLevelEmphasis": "glrlm_LongRunHighGrayLevelEmphasis",
+"original_glrlm_LongRunLowGrayLevelEmphasis": "glrlm_LongRunLowGrayLevelEmphasis",
+"original_glrlm_LowGrayLevelRunEmphasis": "glrlm_LowGrayLevelRunEmphasis",
+"original_glrlm_RunEntropy": "glrlm_RunEntropy",
+"original_glrlm_RunLengthNonUniformity": "glrlm_RunLengthNonUniformity",
+"original_glrlm_RunPercentage": "glrlm_RunPercentage",
+"original_glrlm_RunVariance": "glrlm_RunVariance",
+"original_glrlm_ShortRunEmphasis": "glrlm_ShortRunEmphasis",
+"original_glrlm_ShortRunHighGrayLevelEmphasis": "glrlm_ShortRunHighGrayLevelEmphasis",
+"original_glrlm_ShortRunLowGrayLevelEmphasis": "glrlm_ShortRunLowGrayLevelEmphasis"
+},
+
+"glszm": {
+"original_glszm_HighGrayLevelZoneEmphasis": "glszm_HighGrayLevelZoneEmphasis",
+"original_glszm_LargeAreaEmphasis": "glszm_LargeAreaEmphasis",
+"original_glszm_LargeAreaHighGrayLevelEmphasis": "glszm_LargeAreaHighGrayLevelEmphasis",
+"original_glszm_LargeAreaLowGrayLevelEmphasis": "glszm_LargeAreaLowGrayLevelEmphasis",
+"original_glszm_LowGrayLevelZoneEmphasis": "glszm_LowGrayLevelZoneEmphasis",
+"original_glszm_SizeZoneNonUniformity": "glszm_SizeZoneNonUniformity",
+"original_glszm_SmallAreaEmphasis": "glszm_SmallAreaEmphasis",
+"original_glszm_SmallAreaHighGrayLevelEmphasis": "glszm_SmallAreaHighGrayLevelEmphasis",
+"original_glszm_SmallAreaLowGrayLevelEmphasis": "glszm_SmallAreaLowGrayLevelEmphasis"
+},
+
+"fluo-4":{"fluo-4_num_visicles": "fluo-4_num_visicles"
+}
+
+}
+
