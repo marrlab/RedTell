@@ -16,7 +16,7 @@ We publish two datasets:
 
 
 </ul>
-The datasets are available on <a href="https://zenodo.org/record/7801430#.ZC1Ibi0Rr5k">Zenodo</a>
+The datasets are available on <a href="https://zenodo.org/record/7801430#.ZC1Ibi0Rr5k">Zenodo</a>.
 
 ## Usage
 
