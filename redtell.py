@@ -13,7 +13,7 @@ if __name__ == '__main__':
   parser.add_argument('--data', type=str, required=True)
   parser.add_argument('--model', type=str, required=False)
   parser.add_argument('--channel', type=str, required=False, nargs="*")
-  parser.add_argument('--num_cells', type=int, required=False, nargs="*")
+  parser.add_argument('--num_cells', type=int, required=False)
 
   args = parser.parse_args()
 
@@ -30,7 +30,7 @@ if __name__ == '__main__':
     segment_images(data, model)
 
   elif funct == "train_segmentation":
-      train_new_model(data, model, num_epochs=2)
+      train_new_model(data, model, num_epochs=15)
 
   elif funct == "extract_features":
     if channels == None:
@@ -44,7 +44,5 @@ if __name__ == '__main__':
 
 
   else:
-    print("No such func")
+    print("No such function.")
 
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
