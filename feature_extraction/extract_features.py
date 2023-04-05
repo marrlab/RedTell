@@ -187,6 +187,8 @@ def extract_features(img_dir, channel_list):
       return None
 
     table_name = os.path.join(img_dir, "features.csv")
+    print("Finished")
+    print("Extracted features are saved as " + table_name)
     all_features_table.to_csv(table_name, index=False)
 
     
