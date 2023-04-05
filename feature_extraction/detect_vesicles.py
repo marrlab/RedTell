@@ -117,6 +117,8 @@ def extract_vesicle_number(img_dir):
       save_resutls_path = os.path.join(os.path.dirname(img_dir), "vesicle_results", img_name)
 
       visualize_vesicles(bf_img, ca_img,vesicles, save_resutls_path)
+      
+    print("Images with detected vesicles are saved in " + save_resutls_path)
     
     return vesicle_features
 
