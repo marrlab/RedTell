@@ -11,7 +11,7 @@ We publish two datasets:
     The <strong>SDE-sequnce dataset</strong> containing RBC microscopy images of healthy patients from the CoMMiTMenT study. It has annotation for instance segmentation and classification (discocyte-stomatocyte-echinocyte sequence).
   </li>
   <li>
-     <strong>Anemia dataset<strong> containing RBC microscopy images of healthy, sickle cell disease and thalassemia patients from CoMMiTMenT & MemSID studies. No ground truth annotations are available for this dataset.
+     <strong>Anemia dataset</strong> containing RBC microscopy images of healthy, sickle cell disease and thalassemia patients from CoMMiTMenT & MemSID studies. No ground truth annotations are available for this dataset.
   </li>
 
 
