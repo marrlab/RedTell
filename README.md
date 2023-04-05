@@ -52,11 +52,12 @@ The classification is then done by running
 $ redtell.py  --funct classify --data <data_dir> 
 It trains a classification model and extends the features.csv table with a label column, where cells used for annotation have expert given labels and all other cells have predicted labels obtained with the best model of RedTell Auto-ML module. It also outputs for this model evaluation.csv, a table of metric values for the cross validation to assess model generalization ability, and feature_importance.csv, a table providing importance of every feature for the classifier. Both tables are stored in <data_dir>  directory. The features.csv table can be further used for the downstream analysis to support the research objective. 
 </li> 
-<ul>
+</ul>
 
 
 ## RedTell showcase
-We provide this [notebook] (https://colab.research.google.com/drive/13wX1oN2ozXyAj_-ImighzAa9v9PuMxsR?usp=sharing) on Google Colab to test RedTell online.
+
+We provide this [notebook](https://colab.research.google.com/drive/13wX1oN2ozXyAj_-ImighzAa9v9PuMxsR?usp=sharing) on Google Colab to test RedTell online.
 
 
 
