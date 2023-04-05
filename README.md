@@ -1,5 +1,5 @@
 # RedTell: An AI tool for interpretable analysis of red blood cell morphology
-This repository provides the source code of RedTell and RBC datasets.
+This repository provides the source code of RedTell.
 
 ## Abstract
 Hematologists analyze microscopic images of red blood cells to study their morphology and functionality, detect disorders and search for drugs. However, accurate analysis of a large number of red blood cells needs automated computational approaches that rely on annotated datasets, expensive computational resources, and computer science expertise. We introduce RedTell, an AI tool for the interpretable analysis of red blood cell morphology comprising four single-cell modules: segmentation, feature extraction, assistance in data annotation, and classification. Cell segmentation is performed by a trained Mask R-CNN working robustly on a wide range of datasets requiring no or minimum fine-tuning. Over 130 features that are regularly used in research are extracted for every detected red blood cell. If required, users can train task-specific, highly accurate decision tree-based classifiers to categorize cells, requiring a minimal number of annotations and providing interpretable feature importance. We demonstrate RedTell's applicability and power in three case studies. In the first case study we analyze the difference of the extracted features between the cells coming from patients suffering from different diseases, in the second study we use RedTell to analyze the control samples and use the extracted features to classify cells into echinocytes, discocytes and stomatocytes and finally in the last use case we distinguish sickle cells in sickle cell disease patients. We believe that RedTell can accelerate and standardize red blood cell research and help gain new insights into mechanisms, diagnosis, and treatment of red blood cell associated disorders. 
@@ -17,6 +17,11 @@ We publish two datasets:
 
 </ul>
 The datasets are available on <a href="https://zenodo.org/record/7801430#.ZC1Ibi0Rr5k">Zenodo</a>.
+
+## Segmentation model
+
+A default RedTell segmentation model can be downloaded from [here](https://drive.google.com/file/d/1UfKeFnJQ7IcOdklVDj6ViadcF6U72Blf/view?usp=share_link). It should be put inside the segmentation directory in models folder.
+
 
 ## Usage
 
