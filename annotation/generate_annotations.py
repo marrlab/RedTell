@@ -21,28 +21,16 @@ def create_annotation_table(data_dir, num_cells):
   return sample_data
 
 
-#
-def update_path(path):
-  img_name = path.split("/")[-1][2:][:-4] + ".tif"
-  new_path = os.path.join("test_data/images", img_name)
-  return new_path
-
-
 def create_annotation_cells(data_dir, num_cells):
 
   num_cells = max(num_cells, 200)
-  # annotation_df = create_annotation_table(data_dir, num_cells)
-
-  annotation_df = pd.read_csv(data_dir +"/annotations.csv")
-  annotation_df["annotation_id"] = list(range(1, annotation_df.shape[0]+1))
+  annotation_df = create_annotation_table(data_dir, num_cells)
   annotation_df = annotation_df[[ "annotation_id", "label", "cell_id", "image"]]
-
-  #annotation_df["image"] = annotation_df["image"].apply(update_path)
-  
-  annotation_df.to_csv(os.path.join(data_dir, "annotations.csv"), index=False)
 
   if not os.path.exists(os.path.join(data_dir, 'annotations')):
     os.makedirs(os.path.join(data_dir, 'annotations')) 
+
+  annotation_df.to_csv(os.path.join(data_dir, "annotations.csv"), index=False)
 
   print("Selecting and saving " + str(num_cells) + " cells for annotation")  
 
