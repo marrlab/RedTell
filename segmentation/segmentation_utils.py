@@ -23,9 +23,9 @@ def get_instance_segmentation_model(num_classes=2):
     # TODO: make sure we have the proper number of detected cells!!!!
     # load an instance segmentation model pre-trained pre-trained on COCO
     model = torchvision.models.detection.maskrcnn_resnet50_fpn(weights="MaskRCNN_ResNet50_FPN_Weights.COCO_V1",
-                                                               box_detections_per_img=100,
-                                                               box_nms_thresh = 0.5,
-                                                               box_score_thresh=0.5)
+                                                               box_detections_per_img=200,
+                                                               box_nms_thresh = 0.25,
+                                                               box_score_thresh=0.05)
 
     # get number of input features for the classifier
     in_features = model.roi_heads.box_predictor.cls_score.in_features
@@ -95,7 +95,7 @@ def visualize_predictions(img, masks, save_path):
   colors = generate_colors(num_masks)
   
   # annotate
-  for i in range(num_masks):
+  for i in range(num_masks+1):
 
       mask = np.where(masks==i+1, 1, 0)
       if len(np.unique(mask))>1:
@@ -108,7 +108,6 @@ def visualize_predictions(img, masks, save_path):
 
         ax.annotate(i+1, ((h+w)/2, (x+y)/2), color='black', weight='bold',
                         fontsize=12, ha='center', va='center', alpha=1.0)
-
   ax.imshow(img)
   ax.set_axis_off()
   plt.axis('off')

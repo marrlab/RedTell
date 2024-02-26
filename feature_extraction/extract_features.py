@@ -86,8 +86,8 @@ def extract_features_for_single_channel(img_dir):
   feature_extractor = initialize_feature_extractor()
   region_props = initialize_region_props()
 
-  img_paths = sorted(glob.glob(os.path.join(img_dir, "*.tif")))
-  mask_paths = sorted(glob.glob(os.path.join(os.path.dirname(img_dir), "masks", "*.tif")))
+  img_paths = sorted(glob.glob(os.path.join(img_dir, "*.tif*")))
+  mask_paths = sorted(glob.glob(os.path.join(os.path.dirname(img_dir), "masks", "*.tif*")))
 
 
   dataset_features = []

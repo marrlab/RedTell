@@ -80,8 +80,8 @@ def visualize_vesicles(bf_img, ca_img, vesicles, save_path):
 
 def extract_vesicle_number(img_dir):
 
-    img_paths = sorted(glob.glob(os.path.join(img_dir, "*.tif")))
-    mask_paths = sorted(glob.glob(os.path.join(os.path.dirname(img_dir), "masks", "*.tif")))
+    img_paths = sorted(glob.glob(os.path.join(img_dir, "*.tif*")))
+    mask_paths = sorted(glob.glob(os.path.join(os.path.dirname(img_dir), "masks", "*.tif*")))
 
     vesicle_features = []
 
@@ -90,6 +90,8 @@ def extract_vesicle_number(img_dir):
         os.makedirs(os.path.join(os.path.dirname(img_dir), 'vesicle_results')) 
 
     for img_path, mask_path in tqdm(zip(img_paths, mask_paths)):
+
+      print(img_path, mask_path)
 
       assert img_path.split("/")[-1] == mask_path.split("/")[-1]
       ca_img = np.asarray(Image.open(img_path).convert('L'))
@@ -100,7 +102,7 @@ def extract_vesicle_number(img_dir):
       # for every mask count vesicles
       num_masks = np.max(mask)
 
-      for i in range(1,num_masks+1):
+      for i in range(1, num_masks+1):
         mask_i = np.where(mask==i, mask, 0)
         num_vesicles = count_vesicles(mask_i, vesicles)
         
@@ -114,11 +116,11 @@ def extract_vesicle_number(img_dir):
       img_name = mask_path.split("/")[-1]
       bf_img_path = os.path.join(os.path.dirname(img_dir), "images", img_name)
       bf_img = np.asarray(Image.open(bf_img_path).convert('L'))
-      save_resutls_path = os.path.join(os.path.dirname(img_dir), "vesicle_results", img_name)
+      save_results_path = os.path.join(os.path.dirname(img_dir), "vesicle_results", img_name)
 
-      visualize_vesicles(bf_img, ca_img,vesicles, save_resutls_path)
+      visualize_vesicles(bf_img, ca_img, vesicles, save_results_path)
       
-    print("Images with detected vesicles are saved in " + save_resutls_path)
+    print("Images with detected vesicles are saved in " + os.path.join(os.path.dirname(img_dir), "vesicle_results"))
     
     return vesicle_features
 
