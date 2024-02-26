@@ -115,7 +115,7 @@ def extract_features(img_dir, channel_list):
     feature_tables = []
     feature_dict = sf.get_feature_dict("feature_extraction/feature_list.json")
 
-    num_images = len(os.listdir(os.path.join(img_dir, "masks")))
+    num_images = len(glob.glob(os.path.join(img_dir,"masks", "*.tif*")))
 
     if "mask" in channel_list:
       print("Extracting shape features from", num_images ,"images:")
