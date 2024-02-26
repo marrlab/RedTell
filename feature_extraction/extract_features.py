@@ -118,7 +118,7 @@ def extract_features(img_dir, channel_list):
     num_images = len(os.listdir(os.path.join(img_dir, "masks")))
 
     if "mask" in channel_list:
-      print("Extracting shape features from", num_images ,"images:")
+      print("Extracting shape features from", num_images ,"images")
       mask_features = extract_features_for_single_channel(os.path.join(img_dir, "images"))
       mask_dict = sf.get_features_to_extract(feature_dict, "mask")
       mask_features_table = create_feature_table(mask_features, mask_dict)
