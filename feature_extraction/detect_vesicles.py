@@ -2,7 +2,7 @@ import os
 import cv2
 import numpy as np
 from scipy import ndimage
-from PIL import Image
+from PIL import Image, ImageMath
 import matplotlib.pyplot as plt
 from skimage.measure import label
 from skimage.feature import peak_local_max 
@@ -94,7 +94,9 @@ def extract_vesicle_number(img_dir):
       print(img_path, mask_path)
 
       assert img_path.split("/")[-1] == mask_path.split("/")[-1]
-      ca_img = np.asarray(Image.open(img_path).convert('L'))
+      ca_img = Image.open(img_path)
+      ca_img = ImageMath.eval('im >> 8', im=ca_img.convert('I')).convert('L')
+      ca_img = np.asarray(ca_img)
       mask = np.array(Image.open(mask_path))
 
       vesicles = find_vesicles(ca_img, mask)
@@ -115,7 +117,9 @@ def extract_vesicle_number(img_dir):
       # save vesicle results
       img_name = mask_path.split("/")[-1]
       bf_img_path = os.path.join(os.path.dirname(img_dir), "images", img_name)
-      bf_img = np.asarray(Image.open(bf_img_path).convert('L'))
+      bf_img = Image.open(bf_img_path)
+      bf_img = ImageMath.eval('im >> 8', im=bf_img.convert('I')).convert('L')
+      bf_img = np.asarray(bf_img)
       save_results_path = os.path.join(os.path.dirname(img_dir), "vesicle_results", img_name)
 
       visualize_vesicles(bf_img, ca_img, vesicles, save_results_path)

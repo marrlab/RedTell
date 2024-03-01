@@ -122,12 +122,13 @@ def extract_features(img_dir, channel_list):
       img_paths = sorted(glob.glob(os.path.join(img_dir, "fluo-4", "*.tif*")))
       mask_paths = sorted(glob.glob(os.path.join(img_dir, "masks", "*.tif*")))
       
-      for img_path, mask_path in tqdm(zip(img_paths, mask_paths)):
-        if img_path.split("/")[-1] == mask_path.split("/")[-1]:
+      for img_path, mask_path in zip(img_paths, mask_paths):
+        if img_path.split("/")[-1] != mask_path.split("/")[-1]:
           print("Files with different names in masks and fluo-4 directories: ")
           print(img_path, mask_path)
           print("No feature extraction from the fluo-4 channel is possible")
           channel_list.remove("fluo-4")
+          break
 
     if "mask" in channel_list:
       print("Extracting shape features from", num_images ,"images:")
