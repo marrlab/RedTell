@@ -50,7 +50,7 @@ def segment_patch(patch, model, device, prob_threshold, mask_start_num=1,
         image_masks += mask_i
         image_masks = np.where(image_masks > i + mask_start_num, i + mask_start_num, image_masks)
 
-  image_masks = image_masks.astype(np.uint8)
+  image_masks = image_masks.astype(np.uint16)
   return image_masks
 
 
@@ -117,7 +117,7 @@ def segment_images(img_dir, model):
           image_masks[:540,960:] = masks_top_right
           image_masks[540:,960:] = masks_bottom_right
 
-          image_masks = image_masks.astype(np.uint8)
+          image_masks = image_masks.astype(np.uint16)
           
           image = img_gray.convert('RGB')
           image = np.array(image)

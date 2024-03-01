@@ -94,7 +94,7 @@ def extract_features_for_single_channel(img_dir):
 
   for img_path, mask_path in tqdm(zip(img_paths, mask_paths)):
 
-    assert img_path.split("/")[-1] == mask_path.split("/")[-1]
+    assert img_path.split("/")[-1] == mask_path.split("/")[-1], print("Images with different names", img_path.split("/")[-1], mask_path.split("/")[-1])
 
     img_features = extract_features_for_cells_in_single_img(img_path, mask_path,
                                                             feature_extractor, region_props)
@@ -116,6 +116,18 @@ def extract_features(img_dir, channel_list):
     feature_dict = sf.get_feature_dict("feature_extraction/feature_list.json")
 
     num_images = len(glob.glob(os.path.join(img_dir,"masks", "*.tif*")))
+
+    # check if files have the same name?
+    if "fluo-4" in channel_list:
+      img_paths = sorted(glob.glob(os.path.join(img_dir, "fluo-4", "*.tif*")))
+      mask_paths = sorted(glob.glob(os.path.join(img_dir, "masks", "*.tif*")))
+      
+      for img_path, mask_path in tqdm(zip(img_paths, mask_paths)):
+        if img_path.split("/")[-1] == mask_path.split("/")[-1]:
+          print("Files with different names in masks and fluo-4 directories: ")
+          print(img_path, mask_path)
+          print("No feature extraction from the fluo-4 channel is possible")
+          channel_list.remove("fluo-4")
 
     if "mask" in channel_list:
       print("Extracting shape features from", num_images ,"images:")

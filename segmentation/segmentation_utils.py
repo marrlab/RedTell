@@ -107,7 +107,7 @@ def visualize_predictions(img, masks, save_path):
         x,y,h,w = bbox(mask)
 
         ax.annotate(i+1, ((h+w)/2, (x+y)/2), color='black', weight='bold',
-                        fontsize=12, ha='center', va='center', alpha=1.0)
+                        fontsize=10, ha='center', va='center', alpha=1.0)
   ax.imshow(img)
   ax.set_axis_off()
   plt.axis('off')
