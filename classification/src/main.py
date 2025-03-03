@@ -4,27 +4,25 @@ import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
 
-import configuration
-import data_ingest
-import data_sets
-import eda
+from classification.src import configuration
+from classification.src import data_ingest
+from classification.src import data_sets
+from classification.src import eda
 
-from bayesian_optimization_fitting import train_model_and_generate_learning_curves, fit_model
+from classification.src.bayesian_optimization_fitting import train_model_and_generate_learning_curves, fit_model
 
-from models import light_gbm, random_forest, decision_tree
+from classification.src.models import light_gbm, random_forest, decision_tree
 
 
-def main(
-        path,
-        label_column_name,
-        cell_id_column_name,
-        group_column_name=None,
-        partitioning_method=None,
-        output_folder='.',
+def classify(
+        data_dir,
+        label_column_name="label",
+        cell_id_column_name="cell_id",
+        #TODO: allow multiple columns for grouping
+        group_column_name="image",
+        partitioning_method="random",
 ):
     data_set_ingest_settings = data_ingest.DataSetIngestSettings.from_configuration()
-
-    file_name = os.path.basename(path)
 
     data_set_meta_data = data_ingest.DataSetMetaData(
         label_column_name=label_column_name,
@@ -33,13 +31,13 @@ def main(
     )
 
     data_ingest_result = data_ingest.read_data_set(
-        path, data_set_ingest_settings, data_set_meta_data
+        data_dir, data_set_ingest_settings, data_set_meta_data
     )
 
     data_set_eda = eda.perform_eda(data_ingest_result)
 
     train_data_set, holdout_data_set, inference_data_set = data_sets.create_training_and_holdout_data_set(
-        data_ingest_result, holdout_fraction=0.2559, partitioning_method=partitioning_method
+        data_ingest_result, holdout_fraction=0.20, partitioning_method=partitioning_method
     )
 
     num_training_samples = train_data_set.total_num_observations
@@ -48,18 +46,15 @@ def main(
         raise ValueError(f'too few samples: {num_training_samples}')
     elif num_training_samples < 1_000:
         learning_curve_sample_fractions = [
-           # 0.5, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0
+            #0.25, 0.5, 0.75, 1.0
             1.0
         ]
     else:
         learning_curve_sample_fractions = [
-            # 0.01, 0.02, 0.03, 0.04, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 0.625, 0.75, 0.875, 1.0
-            0.017, 0.033, 0.05, 0.083, # 0.1, 0.133, 0.167, 0.333 #, 0.666, 0.83, 1.0
+            0.25, 0.5, 0.75, 1.0
         ]
 
-    models = [decision_tree, random_forest, light_gbm]
-    # models = [decision_tree]
-    # models = [random_forest]
+    models = [decision_tree] #, random_forest] #, light_gbm]
 
     for model in models:
         print(f'start fitting {model.name}')
@@ -105,7 +100,7 @@ def main(
 
         plt.legend()
 
-        out_dir = os.path.join(output_folder, file_name, model.name)
+        out_dir = os.path.join(data_dir, "classification_results", model.name)
 
         os.makedirs(out_dir, exist_ok=True)
 
@@ -162,6 +157,7 @@ def main(
             df_inference_predictions = inference_data_set.combine_with_predictions(inference_predictions)
             out_path = os.path.join(out_dir, 'inference_predictions.csv')
             df_inference_predictions.to_csv(out_path, index=False)
+            # TODO: add that we are saving predictions 
         else:
             print('skipping inference: no inference instances found in the data set')
 

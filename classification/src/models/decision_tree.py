@@ -4,9 +4,9 @@ import functools
 from sklearn.tree import DecisionTreeClassifier
 from skopt.space.space import Dimension, Integer, Real, Categorical
 
-import eda
-from models.imputation import SimpleImputerPipelineStep
-from pipeline_factory import create_pipeline
+from classification.src import eda
+from classification.src.models.imputation import SimpleImputerPipelineStep
+from classification.src.pipeline_factory import create_pipeline
 
 
 class DecisionTreeClassifierPipelineStep:

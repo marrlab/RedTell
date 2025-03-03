@@ -2,8 +2,8 @@ import typing
 
 from sklearn.pipeline import Pipeline
 
-import eda
-from hyperparameters import HyperparametersMerger
+from classification.src import eda
+from classification.src.hyperparameters import HyperparametersMerger
 
 
 def create_pipeline(pipeline_proto: list, data_set_eda: eda.DataSetEDA) -> \

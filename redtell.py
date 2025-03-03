@@ -4,6 +4,7 @@ from segmentation.predict import segment_images
 from segmentation.train import train_new_model
 from feature_extraction.extract_features import extract_features
 from annotation.generate_annotations import create_annotation_cells
+from classification.src.main import classify
 
 
 if __name__ == '__main__':
@@ -42,7 +43,9 @@ if __name__ == '__main__':
       num_cells = 200
     create_annotation_cells(data, num_cells)
 
+  elif funct == "classify":
+    classify(data)
+
 
   else:
     print("No such function.")
-

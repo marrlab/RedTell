@@ -2,7 +2,7 @@ import enum
 
 from dataclasses import dataclass
 
-import data_ingest
+from classification.src import data_ingest
 
 
 class TaskType(enum.Enum):

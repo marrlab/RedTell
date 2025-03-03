@@ -3,8 +3,9 @@ from typing import Union
 
 import numpy as np
 import pandas as pd
+import os
 
-import configuration
+from classification.src import configuration
 
 DTYPE = Union[str, np.dtype, type]
 
@@ -112,7 +113,7 @@ def _clean_raw_data(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def read_data_set(
-        path: str, data_set_ingest_settings: DataSetIngestSettings, data_set_meta_data: DataSetMetaData
+        data_dir: str, data_set_ingest_settings: DataSetIngestSettings, data_set_meta_data: DataSetMetaData
 ) -> DataIngestResult:
     """
     Read in raw data, clean it, and return together with associated metadata.
@@ -131,8 +132,15 @@ def read_data_set(
     data_set_ingest_result : DataIngestResult
         Cleaned data along with associated data set metadata.
     """
-    df = pd.read_csv(path, delimiter=data_set_ingest_settings.delimiter, na_values=[None], keep_default_na=True)
-    df = df.replace({"Echinocyte": "Stomatocyte"})
+    file_path_annotations = os.path.join(data_dir, "annotations.csv")
+    file_path_features = os.path.join(data_dir, "features.csv")
+
+    df_annotations = pd.read_csv(file_path_annotations, delimiter=data_set_ingest_settings.delimiter, na_values=[None], keep_default_na=True)
+    df_annotations = df_annotations[["cell_id", "image", "label"]]
+    df_features = pd.read_csv(file_path_features, delimiter=data_set_ingest_settings.delimiter, na_values=[None], keep_default_na=True)
+
+    df = df_annotations.merge(df_features, how="right", on=["cell_id", "image"])
+
     predictor_column_names = _get_predictor_columns(df, data_set_meta_data)
 
     types = _get_dtype_conversions(data_set_ingest_settings, data_set_meta_data, predictor_column_names)
@@ -140,6 +148,7 @@ def read_data_set(
     df = df.astype(types)
 
     df = _clean_raw_data(df)
+
 
     return DataIngestResult(
         data_frame=df,

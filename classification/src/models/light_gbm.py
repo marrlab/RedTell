@@ -5,8 +5,8 @@ from lightgbm import LGBMClassifier
 
 from skopt.space.space import Dimension, Integer, Real
 
-import eda
-from pipeline_factory import create_pipeline
+from classification.src import eda
+from classification.src.pipeline_factory import create_pipeline
 
 
 class LightGBMClassifierPipelineStep:

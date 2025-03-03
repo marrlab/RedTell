@@ -3,8 +3,8 @@ import typing
 from sklearn.impute import SimpleImputer
 from skopt.space import Dimension
 
-import configuration
-import eda
+from classification.src import configuration
+from classification.src import eda
 
 
 class SimpleImputerPipelineStep:

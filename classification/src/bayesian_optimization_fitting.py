@@ -12,12 +12,13 @@ from skopt import gp_minimize
 
 from skopt.utils import use_named_args
 
-import configuration
-import data_sets
-import eda
+from classification.src import configuration
+from classification.src import  data_sets
+from classification.src import eda
 
 
 def create_objective(pipeline, hyperparameters, x, y, groups, cv):
+  
     @use_named_args(hyperparameters)
     def objective(**hyperparameters):
         pipeline.set_params(**hyperparameters)
@@ -42,6 +43,7 @@ def fit_model(
     if partitioning_method == 'group':
         cv = StratifiedGroupKFold(n_splits=5, shuffle=True, random_state=0)
     elif partitioning_method == 'random':
+        groups_train = None
         cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=0)
     else:
         raise ValueError(f'unsupported partitioning method: {partitioning_method}')

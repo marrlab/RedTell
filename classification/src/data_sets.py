@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 from sklearn.model_selection import StratifiedGroupKFold, StratifiedKFold, KFold
 
-from data_ingest import DataIngestResult
+from classification.src.data_ingest import DataIngestResult
 
 
 class TrainingDataSet:
@@ -99,14 +99,14 @@ class InferenceDataSet:
         return self._data_frame[self._predictor_column_names].values
 
     def combine_with_predictions(self, y_pred) -> pd.DataFrame:
-        df = self._data_frame
-        df['y_pred'] = y_pred
+        df = self._data_frame.copy()
+        df['predicted_label'] = y_pred
         return df
 
 
 def create_training_and_holdout_data_set(
         data_ingest_result: DataIngestResult,
-        holdout_fraction: float = 0.33,
+        holdout_fraction: float = 0.20,
         partitioning_method: str = 'group',
 ) -> typing.Tuple[TrainingDataSet, HoldoutDataSet, InferenceDataSet]:
     df = data_ingest_result.subset_with_non_missing_label_values
@@ -125,7 +125,7 @@ def create_training_and_holdout_data_set(
         train_indices, holdout_indices = next(
             KFold(
                 n_splits=int(round(1.0 / holdout_fraction)), shuffle=True,
-            ).split(X=x, y=y)
+            ).split(X=x, y=y, groups=None)
         )
 
     else:
