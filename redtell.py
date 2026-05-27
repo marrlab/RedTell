@@ -4,6 +4,7 @@ from segmentation.predict import segment_images
 from segmentation.train import train_new_model
 from feature_extraction.extract_features import extract_features
 from annotation.generate_annotations import create_annotation_cells
+from feature_extraction.extract_reddino_features import extract_reddino_features
 
 
 if __name__ == '__main__':
@@ -36,6 +37,9 @@ if __name__ == '__main__':
     if channels == None:
       channels = ["mask", "bf"]
     extract_features(data, channels)
+
+  elif funct == "extract_reddino_features":
+    extract_reddino_features(data)
 
   elif funct == "annotate":
     if num_cells == None:
