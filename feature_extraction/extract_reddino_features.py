@@ -39,7 +39,6 @@ def preprocess_image_tensors():
 def extract_reddino_features(img_dir):
 
     combined_cell_data = [] # List to store dictionaries for DataFrame rows
-    current_unique_cell_idx = 0
 
     img_paths = sorted(glob.glob(os.path.join(img_dir, "images", "*.tif")))
     mask_paths = sorted(glob.glob(os.path.join(img_dir, "masks", "*.tif")))
@@ -48,6 +47,8 @@ def extract_reddino_features(img_dir):
     transform = preprocess_image_tensors()
 
     for img_path_orig, mask_path_orig in zip(img_paths, mask_paths): # Renamed for clarity
+
+        current_cell_idx = 1
 
         image = np.array(Image.open(img_path_orig))
         mask = np.array(Image.open(mask_path_orig))
@@ -86,7 +87,7 @@ def extract_reddino_features(img_dir):
             embedding_features = embedding_tensor.cpu().numpy().flatten().tolist()
 
             row_data = {
-                'cell_id': current_unique_cell_idx,
+                'cell_id': current_cell_idx,
                 'image_crop': pil_crop_image, # Storing PIL Image object
                 'original_image_path': img_path_orig, # New metadata
                 'original_mask_path': mask_path_orig, # New metadata
@@ -101,7 +102,7 @@ def extract_reddino_features(img_dir):
                 row_data[f'feature_{i}'] = feature_val
 
             combined_cell_data.append(row_data)
-            current_unique_cell_idx += 1
+            current_cell_idx += 1
 
     # Create the DataFrame that holds all information
     features_table = pd.DataFrame(combined_cell_data)
