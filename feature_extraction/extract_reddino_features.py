@@ -22,6 +22,7 @@ def bbox(mask):
     return x_min, x_max, y_min, y_max
 
 def load_model():
+    print("Loading RedDino model...")
     model = timm.create_model("hf_hub:Snarcy/RedDino-base", pretrained=True)
     model.eval()
     device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -46,6 +47,7 @@ def extract_reddino_features(img_dir):
     model, device = load_model()
     transform = preprocess_image_tensors()
 
+    print(f"Found {len(img_paths)} images and {len(mask_paths)} masks. Starting feature extraction...")
     for img_path_orig, mask_path_orig in zip(img_paths, mask_paths): # Renamed for clarity
 
         current_cell_idx = 1
@@ -88,10 +90,9 @@ def extract_reddino_features(img_dir):
 
             row_data = {
                 'cell_id': current_cell_idx,
-                'image_crop': pil_crop_image, # Storing PIL Image object
-                'original_image_path': img_path_orig, # New metadata
-                'original_mask_path': mask_path_orig, # New metadata
-                'original_mask_label': label, # New metadata
+                'image': os.path.basename(img_path_orig), # New metadata
+                'mask': os.path.basename(mask_path_orig), # New metadata
+                'mask_label': label, # New metadata
                 'bbox_x_min': x_min, # New metadata
                 'bbox_x_max': x_max, # New metadata
                 'bbox_y_min': y_min, # New metadata
